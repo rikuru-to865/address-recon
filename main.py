@@ -13,8 +13,10 @@ def index():
 @app.route("/address",methods=["POST"])
 def address():
     info = request.get_data()
-    requests.post(os.getenv("webhook"),"content="+info,headers={'content-type',
-      'application/x-www-form-urlencoded;charset=UTF-8'})
+    main_content = {
+  "content": info
+  }
+    requests.post(os.getenv("webhook"),main_content)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
